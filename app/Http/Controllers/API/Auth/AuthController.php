@@ -9,39 +9,35 @@ use App\Http\Controllers\API\BaseController;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends BaseController
 {
+    public function __construct(protected UserService $userService)
+    {
+
+    }
     public function register(UserRegistrationRequest $request):JsonResponse
     {
-        $validated = $request->validated();
-
-        $validated['password'] = Hash::make($validated['password']);
-        $user = User::create($validated);
-        $success['token'] =  $user->createToken('UserAccessToken')->plainTextToken;
-        $success['name'] =  $user->name;
+        $success = $this->userService->registerUser($request->validated());
 
         return $this->sendResponse($success, Message::USER_REGISTRATION);
     }
 
-    public function login(UserLoginRequest $request):JsonResponse
+    public function login(UserLoginRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
-        if(Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']]))
-        {
-            $user = Auth::user();
-            $success['token'] =  $user->createToken('UserAccessToken')->plainTextToken;
-            $success['name'] =  $user->name;
+        $loginData = $this->userService->loginUser($validated['email'], $validated['password']);
 
-            return $this->sendResponse($success, Message::USER_LOGIN);
+        if (!$loginData) {
+            return $this->sendError('Unauthorised.', ['error' => Message::UNAUTHORISED]);
         }
-        else{
-            return $this->sendError('Unauthorised.', ['error'=> Message::UNAUTHORISED]);
-        }
+
+        return $this->sendResponse($loginData, Message::USER_LOGIN);
     }
 
     public function logout():JsonResponse
