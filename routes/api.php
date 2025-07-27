@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Admin Routes
     Route::middleware('admin')->group(function () {
-        Route::apiResource('/services', AdminServiceController::class);
+        Route::apiResource('/services', AdminServiceController::class)->only('store','update','destroy');
         Route::get('/admin/bookings', [AdminBookingController::class, 'index']);
     });
 });

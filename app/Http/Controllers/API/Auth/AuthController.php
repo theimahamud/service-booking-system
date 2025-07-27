@@ -24,7 +24,7 @@ class AuthController extends BaseController
     {
         $success = $this->userService->registerUser($request->validated());
 
-        return $this->sendResponse($success, Message::USER_REGISTRATION);
+        return $this->sendResponse($success, Message::USER_REGISTRATION, 201);
     }
 
     public function login(UserLoginRequest $request): JsonResponse

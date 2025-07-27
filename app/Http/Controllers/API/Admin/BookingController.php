@@ -8,5 +8,8 @@ use App\Http\Controllers\API\BaseController;
 
 class BookingController extends BaseController
 {
-    //
+    public function index()
+    {
+
+    }
 }

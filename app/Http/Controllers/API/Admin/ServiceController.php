@@ -8,5 +8,18 @@ use App\Http\Controllers\API\BaseController;
 
 class ServiceController extends BaseController
 {
-    //
+    public function store()
+    {
+
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function destroy()
+    {
+
+    }
 }
