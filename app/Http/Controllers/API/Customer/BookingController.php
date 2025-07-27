@@ -16,7 +16,7 @@ class BookingController extends BaseController
 {
     public function index(): JsonResponse
     {
-        $bookings = Booking::with('service','customer')->where('user_id',auth()->user()->id)->get();
+        $bookings = Booking::with('service', 'customer')->where('user_id', auth()->user()->id)->get();
 
         return $this->sendResponse(ServiceBookingResource::collection($bookings), Message::BOOKING_GET);
     }

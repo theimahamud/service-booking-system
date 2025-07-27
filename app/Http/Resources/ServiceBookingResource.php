@@ -16,13 +16,13 @@ class ServiceBookingResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-      return [
-          'id' => $this->id,
-          'customer_name' => $this->customer->name ?? '',
-          'service_name' => $this->service->name ?? '',
-          'service_price' => $this->service->price ?? '',
-          'booking_date' => $this->booking_date->format('d-m-Y'),
-          'status' => $this->status,
-      ];
+        return [
+            'id' => $this->id,
+            'customer_name' => $this->customer->name ?? '',
+            'service_name' => $this->service->name ?? '',
+            'service_price' => $this->service->price ?? '',
+            'booking_date' => $this->booking_date->format('d-m-Y'),
+            'status' => $this->status,
+        ];
     }
 }

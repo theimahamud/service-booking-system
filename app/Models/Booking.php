@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Enums\BookingStatus;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
@@ -14,7 +14,7 @@ class Booking extends Model
         'user_id',
         'service_id',
         'booking_date',
-        'status'
+        'status',
     ];
 
     protected function casts(): array

@@ -8,19 +8,14 @@ use App\Constants\Message;
 use App\Http\Controllers\API\BaseController;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegistrationRequest;
-use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends BaseController
 {
-    public function __construct(protected UserService $userService)
-    {
+    public function __construct(protected UserService $userService) {}
 
-    }
-    public function register(UserRegistrationRequest $request):JsonResponse
+    public function register(UserRegistrationRequest $request): JsonResponse
     {
         $success = $this->userService->registerUser($request->validated());
 
@@ -33,14 +28,14 @@ class AuthController extends BaseController
 
         $loginData = $this->userService->loginUser($validated['email'], $validated['password']);
 
-        if (!$loginData) {
+        if (! $loginData) {
             return $this->sendError('Unauthorised.', ['error' => Message::UNAUTHORISED]);
         }
 
         return $this->sendResponse($loginData, Message::USER_LOGIN);
     }
 
-    public function logout():JsonResponse
+    public function logout(): JsonResponse
     {
         auth()->user()->tokens()->delete();
 

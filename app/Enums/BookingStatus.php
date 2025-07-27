@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum BookingStatus:string
+enum BookingStatus: string
 {
     case PENDING = 'pending';
     case CONFIRMED = 'confirmed';

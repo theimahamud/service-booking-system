@@ -25,7 +25,7 @@ class StoreBookingRequest extends FormRequest
     {
         return [
             'service_id' => ['required', 'exists:services,id'],
-            'booking_date' => ['required','date','after:now'],
+            'booking_date' => ['required', 'date', 'after:now'],
         ];
     }
 }

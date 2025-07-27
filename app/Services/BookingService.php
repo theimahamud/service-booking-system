@@ -11,6 +11,7 @@ class BookingService
     public function bookService(array $data): Booking
     {
         $data['user_id'] = auth()->user()->id;
+
         return Booking::create($data);
     }
 }

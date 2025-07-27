@@ -10,7 +10,7 @@ class ServiceHandler
 {
     public function create(array $data): Service
     {
-       return Service::create($data);
+        return Service::create($data);
     }
 
     public function update(array $data, Service $service): Service

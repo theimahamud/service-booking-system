@@ -13,17 +13,17 @@ class UserService
     {
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
-        $success['token'] =  $user->createToken('UserAccessToken')->plainTextToken;
-        $success['name'] =  $user->name;
+        $success['token'] = $user->createToken('UserAccessToken')->plainTextToken;
+        $success['name'] = $user->name;
 
         return $success;
     }
 
-    public function loginUser(string $email, string $password): array|null
+    public function loginUser(string $email, string $password): ?array
     {
         $user = User::where('email', $email)->first();
 
-        if (!$user || !Hash::check($password, $user->password)) {
+        if (! $user || ! Hash::check($password, $user->password)) {
             return null;
         }
 

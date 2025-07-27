@@ -14,7 +14,7 @@ class ServiceController extends BaseController
 {
     public function index(): JsonResponse
     {
-        $services = Service::where('status',true)->latest()->get();
+        $services = Service::where('status', true)->latest()->get();
 
         return $this->sendResponse(ServiceResource::collection($services), Message::SERVICE_GET);
     }

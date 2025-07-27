@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Unique;
 
 class UserRegistrationRequest extends FormRequest
 {
@@ -25,10 +24,10 @@ class UserRegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string', 'max:255'],
-            'email' => ['required','email','unique:users'],
-            'password' => ['required','min:6'],
-            'confirm_password' => ['required','same:password'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:6'],
+            'confirm_password' => ['required', 'same:password'],
         ];
     }
 }

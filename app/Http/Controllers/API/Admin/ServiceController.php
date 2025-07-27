@@ -12,9 +12,7 @@ use App\Services\ServiceHandler;
 
 class ServiceController extends BaseController
 {
-    public function __construct(protected ServiceHandler $serviceHandler)
-    {
-    }
+    public function __construct(protected ServiceHandler $serviceHandler) {}
 
     public function store(StoreServiceRequest $request)
     {

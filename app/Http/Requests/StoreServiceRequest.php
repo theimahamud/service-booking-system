@@ -25,7 +25,7 @@ class StoreServiceRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'price' => ['required',],
+            'price' => ['required'],
             'description' => ['nullable', 'string'],
             'status' => ['boolean'],
         ];
