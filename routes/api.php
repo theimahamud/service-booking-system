@@ -8,8 +8,11 @@ use App\Http\Controllers\API\Admin\BookingController as AdminBookingController;
 use Illuminate\Support\Facades\Route;
 
 // Login and Registration Route
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+
+Route::controller(AuthController::class)->group(function (){
+    Route::post('/register',  'register');
+    Route::post('/login', 'login')->middleware('throttle:5,1');
+});
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -25,5 +28,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('/services', AdminServiceController::class);
         Route::get('/admin/bookings', [AdminBookingController::class, 'index']);
     });
+});
+
+//fallback api route
+Route::fallback(function(){
+    return response()->json([
+        'status'=>false,
+        'message'=>'API Not Found!'
+    ], 404);
 });
 

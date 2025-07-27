@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Customer;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\BaseController;
 
-class ServiceController extends Controller
+class ServiceController extends BaseController
 {
     //
 }
