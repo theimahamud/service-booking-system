@@ -98,24 +98,12 @@ A simple, API-based service booking system built with Laravel. Customers can reg
 - Laravel form request validation
 - Modular structure with Controllers, Resources, and Requests
 
-## Live Demo
-
-> Hosted Link (Github): https://github.com/theimahamud/service-booking-system
-
 ## Sample Admin Credentials
 
 ```
 Email: admin@test.com
 Password: password
 ```
-
-## Screenshots
-
-> Include screenshots here if available
-
-## Contribution
-
-Contributions are welcome. Fork the repo and submit a pull request.
 
 ## License
 
